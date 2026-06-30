@@ -6,7 +6,7 @@ interface StartScreenProps {
 
 export default function StartScreen({ onStart }: StartScreenProps) {
   return (
-    <div className="flex flex-col items-center justify-center min-h-[60vh] gap-8">
+    <div className="flex flex-col items-center pt-16">
       <button
         onClick={onStart}
         className="

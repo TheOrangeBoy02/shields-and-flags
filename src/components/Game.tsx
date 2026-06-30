@@ -1,6 +1,6 @@
 "use client";
 
-import { useReducer, useCallback, useState } from "react";
+import { useReducer, useCallback } from "react";
 import Board from "./Board";
 import GameStatus from "./GameStatus";
 import ResetButton from "./ResetButton";
@@ -102,13 +102,13 @@ function gameReducer(state: State, action: Action): State {
   }
 }
 
-export default function Game() {
-  const [hasStarted, setHasStarted] = useState(false);
-  const [state, dispatch] = useReducer(gameReducer, initialState);
+interface GameProps {
+  hasStarted: boolean;
+  onStart: () => void;
+}
 
-  const handleStart = useCallback(() => {
-    setHasStarted(true);
-  }, []);
+export default function Game({ hasStarted, onStart }: GameProps) {
+  const [state, dispatch] = useReducer(gameReducer, initialState);
 
   const handleCellClick = useCallback((index: number) => {
     dispatch({ type: "MAKE_MOVE", index });
@@ -122,11 +122,11 @@ export default function Game() {
   const isFirstMove = state.moveCount === 0;
 
   if (!hasStarted) {
-    return <StartScreen onStart={handleStart} />;
+    return <StartScreen onStart={onStart} />;
   }
 
   return (
-    <div className="flex flex-col items-center gap-8">
+    <div className="flex flex-col items-center gap-4 sm:gap-8">
       <Board
         cells={state.cells}
         onCellClick={handleCellClick}

@@ -1,6 +1,14 @@
 @import "tailwindcss";
 
 :root {
+/* Add BentonSans Bold font-face */
+@font-face {
+  font-family: 'BentonSans';
+  src: url('/BentonSans Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
   --color-electric: #0051FF;
   --color-standard: #0033A1;
   --color-deep: #00008C;
@@ -23,7 +31,8 @@
 body {
   background: var(--color-white);
   color: var(--color-black);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'BentonSans', sans-serif;
+  font-weight: bold;
   min-height: 100vh;
 }
 

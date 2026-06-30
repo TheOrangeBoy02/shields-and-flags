@@ -18,10 +18,10 @@ export default function Cell({ value, onClick, disabled, isWinningCell }: CellPr
       className={`
         w-full h-full
         flex items-center justify-center
-        bg-transparent
+        bg-transparent rounded-lg
         transition-all duration-200 ease-in-out
         focus:outline-none focus:bg-blue-50/50
-        ${!disabled && !value ? "cursor-pointer hover:bg-blue-50/50" : ""}
+        ${!disabled && !value ? "cursor-pointer hover:bg-blue-100" : ""}
         ${disabled || value ? "cursor-default" : ""}
       `}
       onClick={onClick}
@@ -32,14 +32,14 @@ export default function Cell({ value, onClick, disabled, isWinningCell }: CellPr
           <img
             src="/Shield@4x.png"
             alt="Shield"
-            className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
+            className="h-14 w-auto sm:h-16 md:h-20 object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
           />
       )}
       {value === "flag" && (
           <img
             src="/Flag@4x.png"
             alt="Flag"
-            className="w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
+            className="h-14 w-auto sm:h-16 md:h-20 object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
           />
       )}
     </button>

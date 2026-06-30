@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Shields & Flags",
-  description: "A Tic-Tac-Toe variant game - Shields vs Flags",
+  description: "A Tic-Tac-Toe variant game Shields vs Flags",
 };
 
 export default function RootLayout({
