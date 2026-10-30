@@ -34,6 +34,9 @@ body {
   font-family: 'BentonSans', sans-serif;
   font-weight: bold;
   min-height: 100vh;
+  /* Taps on iPad shouldn't trigger double-tap zoom or a grey highlight */
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 @keyframes scaleIn {

@@ -32,14 +32,14 @@ export default function Cell({ value, onClick, disabled, isWinningCell }: CellPr
           <img
             src="/Shield@4x.png"
             alt="Shield"
-            className="h-14 w-auto sm:h-16 md:h-20 object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
+            className="h-[60%] w-auto object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
           />
       )}
       {value === "flag" && (
           <img
             src="/Flag@4x.png"
             alt="Flag"
-            className="h-14 w-auto sm:h-16 md:h-20 object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
+            className="h-[60%] w-auto object-contain transition-transform duration-300 animate-[scaleIn_0.3s_ease-out]"
           />
       )}
     </button>

@@ -54,7 +54,7 @@ export default function Board({ cells, onCellClick, disabled, winningCells }: Bo
     <div className="relative">
       {/* Board grid with lines */}
       <div
-        className="relative aspect-square w-[min(82vw,44vh)] max-w-[400px]"
+        className="relative aspect-square w-[min(82vw,44vh)] max-w-[400px] landscape:w-[min(55vw,calc(100dvh-14rem))] landscape:max-w-[640px]"
         role="grid"
         aria-label="Game board"
       >

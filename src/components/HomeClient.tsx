@@ -3,14 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Game from "@/components/Game";
-import BannerCarousel from "@/components/BannerCarousel";
-import type { Banner } from "@/lib/banners";
-
-interface HomeClientProps {
-  banners: Banner[];
-}
-
-export default function HomeClient({ banners }: HomeClientProps) {
+export default function HomeClient() {
   const [hasStarted, setHasStarted] = useState(false);
   // Bumping the key remounts Game so its board resets when returning to start.
   const [gameKey, setGameKey] = useState(0);
@@ -21,7 +14,13 @@ export default function HomeClient({ banners }: HomeClientProps) {
   };
 
   return (
-    <div className="h-[100dvh] flex flex-col overflow-hidden">
+    // In landscape (e.g. iPad held sideways) the game view splits into a logo
+    // column on the left and the board on the right.
+    <div
+      className={`h-[100dvh] flex flex-col overflow-hidden ${
+        hasStarted ? "landscape:flex-row" : ""
+      }`}
+    >
       {/* Back navigation — only shown in-game */}
       {hasStarted && (
         <button
@@ -54,7 +53,9 @@ export default function HomeClient({ banners }: HomeClientProps) {
       {/* Header — centered on the start screen, animates to the top in-game */}
       <header
         className={`flex flex-col items-center shrink-0 transition-[padding] duration-700 ease-in-out ${
-          hasStarted ? "pt-6 pb-4 sm:pt-12 sm:pb-8" : "pt-[28vh] pb-4"
+          hasStarted
+            ? "portrait:pt-6 portrait:pb-4 portrait:sm:pt-12 portrait:sm:pb-8 landscape:w-[38%] landscape:justify-center landscape:pl-8"
+            : "pt-[28vh] pb-4"
         }`}
       >
         <Image
@@ -63,23 +64,20 @@ export default function HomeClient({ banners }: HomeClientProps) {
           width={663}
           height={280}
           priority
-          className="h-auto w-[min(60vw,240px)] sm:w-[280px]"
+          className={`h-auto w-[min(60vw,240px)] ${
+            hasStarted ? "portrait:sm:w-[280px] landscape:w-[min(28vw,340px)]" : "sm:w-[280px]"
+          }`}
         />
       </header>
 
       {/* Main Game Area */}
       <main
         className={`flex-1 min-h-0 flex justify-center px-4 ${
-          hasStarted ? "items-center" : "items-start"
+          hasStarted ? "items-center landscape:py-8 landscape:pr-8" : "items-start"
         }`}
       >
         <Game key={gameKey} hasStarted={hasStarted} onStart={() => setHasStarted(true)} />
       </main>
-
-      {/* Banner Ad Section */}
-      <footer className="shrink-0">
-        <BannerCarousel banners={banners} />
-      </footer>
     </div>
   );
 }
